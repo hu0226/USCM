@@ -11,7 +11,6 @@ import com.scu.uscm.R
 import com.scu.uscm.database.local.UscmDao
 import com.scu.uscm.database.local.UscmDatabase
 import com.scu.uscm.database.model.Student
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.frag_login.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -29,9 +28,8 @@ class LoginFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.frag_login, container, false)
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+        inflater.inflate(R.layout.frag_login, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,10 +37,6 @@ class LoginFragment : Fragment() {
         btn_login.setOnClickListener {
             checkColumn()
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 
     private fun checkColumn() {
