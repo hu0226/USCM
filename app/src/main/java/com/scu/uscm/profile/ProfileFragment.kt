@@ -47,4 +47,5 @@ class ProfileFragment : Fragment() {
             }
         }
     }
+
 }
