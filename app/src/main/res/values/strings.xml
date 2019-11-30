@@ -5,4 +5,11 @@
     <string name="title_board">公布欄</string>
     <string name="title_history">點名紀錄</string>
     <string name="title_profile">關於我</string>
+    <string name="title_login">登入</string>
+
+    <string name="dialog_title">請輸入完整資料</string>
+    <string name="dialog_content">請輸入完整資料</string>
+    <string name="dialog_sure">確定</string>
+    <string name="dialog_cancel">取消</string>
+
 </resources>
