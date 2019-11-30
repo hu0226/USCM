@@ -11,31 +11,14 @@ import kotlinx.android.synthetic.main.frag_login.*
 
 class LoginFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.frag_login, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+        inflater.inflate(R.layout.frag_login, container, false)
 
-        edt_department.setOnClickListener {
-            chooseDepartment()
-        }
-
-        edt_grade.setOnClickListener {
-            chooseGrade()
-        }
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         btn_login.setOnClickListener {
             saveData()
         }
-
-
-        return view
-    }
-
-    private fun chooseDepartment() {
-
-    }
-
-    private fun chooseGrade() {
-
     }
 
     private fun saveData() {

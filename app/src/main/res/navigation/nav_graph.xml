@@ -3,16 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/boardFragment">
 
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.scu.uscm.login.LoginFragment"
-        android:label="LoginFragment"
+        android:label="Login"
         tools:layout="@layout/frag_login"/>
+
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.scu.uscm.profile.ProfileFragment"
-        android:label="ProfileFragment"
+        android:label="Profile"
         tools:layout="@layout/frag_profile"/>
+
+    <fragment
+        android:id="@+id/boardFragment"
+        android:name="com.scu.uscm.board.BoardFragment"
+        android:label="Boarder"
+        tools:layout="@layout/frag_board" />
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.scu.uscm.history.HistoryFragment"
+        android:label="History"
+        tools:layout="@layout/frag_history" />
+
+    <action android:id="@+id/action_global_boardFragment" app:destination="@id/boardFragment" app:popUpTo="@id/nav_graph" app:popUpToInclusive="true" />
+    <action android:id="@+id/action_global_historyFragment" app:destination="@id/historyFragment" app:popUpTo="@id/nav_graph" app:popUpToInclusive="true"/>
+    <action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment" app:popUpTo="@id/nav_graph" app:popUpToInclusive="true"/>
+
 </navigation>
