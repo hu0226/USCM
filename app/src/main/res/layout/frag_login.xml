@@ -23,8 +23,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
-        android:hint="請選擇科系"
+        android:hint="請輸入科系"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_login_title" />
@@ -35,8 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="4dp"
-        android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
-        android:hint="請選擇年級"
+        android:hint="請輸入年級"
+        android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="@+id/edt_department"
         app:layout_constraintTop_toBottomOf="@+id/edt_department" />
