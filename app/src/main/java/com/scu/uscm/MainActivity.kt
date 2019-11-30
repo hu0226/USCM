@@ -1,11 +1,10 @@
 package com.scu.uscm
 
 import android.os.Bundle
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.scu.uscm.board.BoardFragment
 import com.scu.uscm.history.HistoryFragment
@@ -61,13 +60,11 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.title = resources.getString(R.string.title_board)
 
-
         // bottom navigation
         bottom_navigation_view.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 
     private fun getCurrentNavFragment(): Fragment? =
         supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.childFragmentManager?.primaryNavigationFragment
-
 
 }
