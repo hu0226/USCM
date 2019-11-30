@@ -12,9 +12,9 @@ interface UscmDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertStudent(student: Student)
 
-    @Query("SELECT * FROM Student")
+    @Query("SELECT * FROM student")
     fun getStudent(): Student
 
-    @Query("DELETE FROM Student")
+    @Query("DELETE FROM student")
     fun clearStudent()
 }

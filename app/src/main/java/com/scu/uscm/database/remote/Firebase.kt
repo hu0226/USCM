@@ -1,4 +1,4 @@
-package com.scu.uscm.util
+package com.scu.uscm.database.remote
 
 import com.google.firebase.firestore.FirebaseFirestore
 
