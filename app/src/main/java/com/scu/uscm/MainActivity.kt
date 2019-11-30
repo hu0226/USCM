@@ -4,10 +4,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.scu.uscm.board.BoardFragment
 import com.scu.uscm.database.local.UscmDao
 import com.scu.uscm.database.local.UscmDatabase
@@ -17,10 +22,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+
 class MainActivity : BaseActivity() {
 
     private var db: UscmDatabase? = null
     private var uscmDao: UscmDao? = null
+    var fbdb = FirebaseFirestore.getInstance()
 
     private val navController: NavController by lazy { Navigation.findNavController(this, R.id.nav_host_fragment) }
 

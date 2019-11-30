@@ -10,7 +10,9 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.scu.uscm.R
 import com.scu.uscm.database.local.UscmDao
 import com.scu.uscm.database.local.UscmDatabase
+import com.scu.uscm.database.model.Schedule
 import com.scu.uscm.database.model.Student
+import com.scu.uscm.database.remote.Firebase
 import kotlinx.android.synthetic.main.frag_login.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -19,6 +21,7 @@ class LoginFragment : Fragment() {
 
     private var db: UscmDatabase? = null
     private var uscmDao: UscmDao? = null
+    private lateinit var scheduleList: MutableList<Schedule>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,6 +81,82 @@ class LoginFragment : Fragment() {
         GlobalScope.launch {
             db?.uscmDao()?.insertStudent(student)
         }
+
+        scheduleList = mutableListOf()
+        scheduleList.add(
+            Schedule(
+                "CS001",
+                "計算機概論",
+                "8",
+                -1L,
+                false
+            )
+        )
+        scheduleList.add(
+            Schedule(
+                "CS001",
+                "計算機概論",
+                "9",
+                -1L,
+                false
+            )
+        )
+        scheduleList.add(
+            Schedule(
+                "CS001",
+                "計算機概論",
+                "10",
+                -1L,
+                false
+            )
+        )
+        scheduleList.add(
+            Schedule(
+                "CS002",
+                "資料結構",
+                "11",
+                -1L,
+                false
+            )
+        )
+        scheduleList.add(
+            Schedule(
+                "CS002",
+                "資料結構",
+                "13",
+                -1L,
+                false
+            )
+        )
+        scheduleList.add(
+            Schedule(
+                "CS002",
+                "資料結構",
+                "14",
+                -1L,
+                false
+            )
+        )
+        scheduleList.add(
+            Schedule(
+                "CS003",
+                "作業系統",
+                "15",
+                -1L,
+                false
+            )
+        )
+        scheduleList.add(
+            Schedule(
+                "CS003",
+                "作業系統",
+                "16",
+                -1L,
+                false
+            )
+        )
+
+        Firebase.instance.setStudent(student)
 
         findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToMessageDialog())
     }
