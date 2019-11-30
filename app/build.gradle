@@ -15,7 +15,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.scu.uscm"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -67,4 +67,11 @@ dependencies {
 //    implementation "androidx.room:room-coroutines:${version_room}"
     kapt "android.arch.persistence.room:compiler:$version_room"
     annotationProcessor "androidx.room:room-compiler:$version_room"
+
+    /** Moshi **/
+    implementation "com.squareup.moshi:moshi:$version_moshi"
+    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
+
+    // material dialog
+    implementation "com.afollestad.material-dialogs:core:${version_materialDialog}"
 }

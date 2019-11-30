@@ -10,4 +10,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
 
+    <style name="MessageDialog">
+        <item name="android:windowBackground">@color/translucent_80</item>
+    </style>
+
 </resources>

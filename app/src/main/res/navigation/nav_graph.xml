@@ -9,7 +9,11 @@
         android:id="@+id/loginFragment"
         android:name="com.scu.uscm.login.LoginFragment"
         android:label="Login"
-        tools:layout="@layout/frag_login"/>
+        tools:layout="@layout/frag_login">
+        <action
+            android:id="@+id/action_loginFragment_to_messageDialog"
+            app:destination="@id/messageDialog" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileFragment"
@@ -29,8 +33,15 @@
         android:label="History"
         tools:layout="@layout/frag_history" />
 
+    <dialog
+        android:id="@+id/messageDialog"
+        android:name="com.scu.uscm.dialog.MessageDialog"
+        android:label=""
+        tools:layout="@layout/dialog_message"/>
+
     <action android:id="@+id/action_global_boardFragment" app:destination="@id/boardFragment" app:popUpTo="@id/nav_graph" app:popUpToInclusive="true" />
     <action android:id="@+id/action_global_historyFragment" app:destination="@id/historyFragment" app:popUpTo="@id/nav_graph" app:popUpToInclusive="true"/>
     <action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment" app:popUpTo="@id/nav_graph" app:popUpToInclusive="true"/>
+    <action android:id="@+id/action_global_loginFragment" app:destination="@id/loginFragment" app:popUpTo="@id/nav_graph" app:popUpToInclusive="true"/>
 
 </navigation>
