@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">USCM</string>
+
+    <!--    toolbar title-->
+    <string name="title_board">公布欄</string>
+    <string name="title_history">點名紀錄</string>
+    <string name="title_profile">關於我</string>
 </resources>

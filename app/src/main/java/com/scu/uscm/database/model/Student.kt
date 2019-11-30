@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity
 data class Student(
-    @PrimaryKey val id: String? = "",
+    @PrimaryKey val id: String = "",
     val name: String? = "",
     val email: String? = "",
     val department: String? = "",
