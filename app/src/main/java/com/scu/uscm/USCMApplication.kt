@@ -18,6 +18,7 @@ class USCMApplication : Application(), BootstrapNotifier {
 
     companion object {
         var appContext: Context by Delegates.notNull()
+        const val BEACON_BACKGROUND_ID = "backgroundRegion"
     }
 
     override fun onCreate() {
@@ -26,7 +27,7 @@ class USCMApplication : Application(), BootstrapNotifier {
 
         Log.d("TAG", "App started up")
         val beaconManager = BeaconManager.getInstanceForApplication(this)
-        val region = Region("com.scu.uscm.boostrapRegion", null, null, null)
+        val region = Region(BEACON_BACKGROUND_ID, null, null, null)
         regionBootstrap = RegionBootstrap(this, region)
     }
 
