@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">USCM</string>
 
-    <!--    toolbar title-->
+    <!-- toolbar title -->
     <string name="title_board">公布欄</string>
     <string name="title_history">點名紀錄</string>
     <string name="title_profile">關於我</string>
@@ -11,5 +11,13 @@
     <string name="dialog_content">請輸入完整資料</string>
     <string name="dialog_sure">確定</string>
     <string name="dialog_cancel">取消</string>
+
+    <!-- notification -->
+    <string name="notification_title">Notification comes!</string>
+    <string name="notification_content">Click to go to board!!</string>
+    <string name="notification_params">this is param</string>
+
+    <!-- profile -->
+    <string name="profile_class">%s %s年%s班"</string>
 
 </resources>

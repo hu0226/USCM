@@ -1,6 +1,9 @@
 package com.scu.uscm
 
 import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +11,8 @@ import android.os.RemoteException
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -31,11 +36,14 @@ class MainActivity : BaseActivity(), BeaconConsumer {
 
     companion object {
         const val PERMISSION_REQUEST_CODE = 1001
-
         const val BEACON_RANGING_ID = "myRangingUniqueId"
         const val BEACON_MONITORING_ID = "myMonitorUniqueId"
-//        const val IBEACON_FORMAT = "m:2-3=beac,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"  // alt
-        const val IBEACON_FORMAT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24"  // ibeacon
+        const val ALTBEACON_FORMAT = "m:2-3=beac,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"
+        const val IBEACON_FORMAT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24"
+
+        private const val CHANNEL_ID = "com.scu.uscm"
+        private const val CHANNEL_NAME = "MyChannel"
+        private const val notificationId = 8
     }
 
     private val db: UscmDatabase by lazy { UscmDatabase.getInstance(this) }
@@ -181,10 +189,6 @@ class MainActivity : BaseActivity(), BeaconConsumer {
         }
     }
 
-
-
-
-
     private fun setupBeacon() {
         beaconManager = BeaconManager.getInstanceForApplication(this)
         beaconManager?.beaconParsers?.add(BeaconParser().setBeaconLayout(IBEACON_FORMAT))
@@ -221,6 +225,8 @@ class MainActivity : BaseActivity(), BeaconConsumer {
                     Log.i("TAG", "txPower ${this.id3}")     // Minor
                     Log.i("TAG", "txPower ${this.txPower}") // txPower
                 }
+
+//                sendNotification()
             }
         }
 
@@ -230,8 +236,6 @@ class MainActivity : BaseActivity(), BeaconConsumer {
         } catch (e: RemoteException) {
             e.printStackTrace()
         }
-
-
 
         beaconManager?.addMonitorNotifier( object: MonitorNotifier {
             override fun didDetermineStateForRegion(state: Int, region: Region?) {
@@ -253,6 +257,40 @@ class MainActivity : BaseActivity(), BeaconConsumer {
         } catch (e: RemoteException) {
             Log.i("TAG", "error$e")
         }
+    }
+
+    private fun sendNotification() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT)
+            channel.description = "description"
+            val notificationManager: NotificationManager = this.getSystemService(NotificationManager::class.java)
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        val builder: NotificationCompat.Builder =
+            NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_child_care_black_24dp)
+                .setContentTitle(resources.getString(R.string.notification_title))
+                .setContentText(resources.getString(R.string.notification_content))
+                .setVibrate(longArrayOf(500, 500, 1000, 2000, 3000, 500, 500, 500))
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(getPendingIntent())
+                .setAutoCancel(true)
+
+        val notificationManager = NotificationManagerCompat.from(this)
+        notificationManager.notify(notificationId, builder.build())
+    }
+
+    private fun getPendingIntent(): PendingIntent? {
+        val bundle = Bundle()
+        bundle.putString("params", resources.getString(R.string.notification_params))
+        return Navigation
+            .findNavController(this, R.id.nav_host_fragment)
+            .createDeepLink()
+            .setGraph(R.navigation.nav_graph)
+            .setDestination(R.id.boardFragment)
+            .setArguments(bundle)
+            .createPendingIntent()
     }
 
     override fun onDestroy() {

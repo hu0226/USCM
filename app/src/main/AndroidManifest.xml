@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -26,6 +27,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <!-- 為 Activity 設置 <nav-graph/> 標籤，這樣 user 在 Web 中訪問到你的網站時，你的 app 便能監聽到 -->
+            <nav-graph android:value="@navigation/nav_graph" />
         </activity>
 
         <!-- uncomment the following to enable scanning for over 30 minutes on Android 7+ -->
