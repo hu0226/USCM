@@ -5,9 +5,10 @@ import android.content.Intent
 import android.util.Log
 import org.altbeacon.beacon.BeaconManager
 import org.altbeacon.beacon.Region
-import org.altbeacon.beacon.powersave.BackgroundPowerSaver
 import org.altbeacon.beacon.startup.BootstrapNotifier
 import org.altbeacon.beacon.startup.RegionBootstrap
+import android.content.Context
+import androidx.multidex.MultiDex
 import kotlin.properties.Delegates
 
 
@@ -16,7 +17,7 @@ class USCMApplication : Application(), BootstrapNotifier {
     private var regionBootstrap: RegionBootstrap? = null
 
     companion object {
-        var appContext: USCMApplication by Delegates.notNull()
+        var appContext: Context by Delegates.notNull()
     }
 
     override fun onCreate() {
@@ -43,5 +44,10 @@ class USCMApplication : Application(), BootstrapNotifier {
 
     override fun didExitRegion(p0: Region?) {
         // Don't care
+    }
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
     }
 }

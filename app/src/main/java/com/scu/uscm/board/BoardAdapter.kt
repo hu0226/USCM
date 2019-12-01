@@ -15,7 +15,7 @@ class BoardAdapter(var eventList: MutableList<Event>) : RecyclerView.Adapter<Boa
         LayoutInflater.from(parent.context).inflate(R.layout.item_board_event, parent, false)
     )
 
-    override fun getItemCount(): Int = eventList.size
+    override fun getItemCount() = eventList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.event_name.text = eventList[position].eventName

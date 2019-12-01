@@ -1,7 +1,6 @@
 package com.scu.uscm.database.model
 
 import android.os.Parcelable
-import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize

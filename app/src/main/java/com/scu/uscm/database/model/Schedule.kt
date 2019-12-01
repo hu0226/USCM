@@ -4,8 +4,10 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Record(
+data class Schedule(
+    var classId: String? = "",
     var className: String? = "",
-    var time: Long? = -1L,
+    var classTime: String = "",
+    var signTime: String = "",
     var isSign: Boolean? = false
 ): Parcelable
