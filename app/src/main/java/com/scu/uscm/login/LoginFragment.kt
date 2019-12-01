@@ -21,6 +21,7 @@ class LoginFragment : Fragment() {
 
     private var db: UscmDatabase? = null
     private var uscmDao: UscmDao? = null
+    private lateinit var scheduleList: MutableList<Schedule>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

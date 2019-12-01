@@ -3,12 +3,10 @@ package com.scu.uscm.database.remote
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import com.google.firebase.firestore.FirebaseFirestore
 import com.scu.uscm.R
-import com.scu.uscm.USCMApplication
 import com.scu.uscm.database.model.Schedule
 import com.scu.uscm.database.model.Student
 

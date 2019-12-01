@@ -3,7 +3,6 @@ package com.scu.uscm.history
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.scu.uscm.R
 import com.scu.uscm.database.model.Schedule
@@ -31,4 +30,5 @@ class HistoryRecordAdapter(var signHistoryList: MutableList<Schedule>) :
         signHistoryList = upDateSignHistoryList
         notifyDataSetChanged()
     }
+
 }
