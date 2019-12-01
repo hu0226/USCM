@@ -48,7 +48,7 @@ class MainActivity : BaseActivity(), BeaconConsumer {
 
     private val db: UscmDatabase by lazy { UscmDatabase.getInstance(this) }
     private lateinit var uscmDao: UscmDao
-    private var hasSignal = true
+    private var hasSignedAndNotified = false
 
     private var beaconManager: BeaconManager? = null
 
@@ -135,18 +135,6 @@ class MainActivity : BaseActivity(), BeaconConsumer {
                 R.id.boardFragment -> {
                     supportActionBar?.title = resources.getString(R.string.title_board)
                     bottom_navigation_view.visibility = View.VISIBLE
-
-                    GlobalScope.launch {
-                        if (db.uscmDao().getStudent() !== null && hasSignal) {
-                            Firebase.instance.signClass(
-                                db.uscmDao().getStudent().id,
-                                hourFormatter.format(Date()),
-                                formatter.format(Date()),
-                                this@MainActivity.applicationContext,
-                                navController
-                            )
-                        }
-                    }
                 }
                 R.id.historyFragment ->
                     supportActionBar?.title = resources.getString(R.string.title_history)
@@ -209,21 +197,20 @@ class MainActivity : BaseActivity(), BeaconConsumer {
         // Region(uniqueId, Identifier id1, Identifier id2, Identifier id3)
         // 利用傳入参數可以選擇性的獲取指定 Beacon 信號。若没有傳入相關参數，表示獲取所有 Beacon 信號
         val rangeNotifier = RangeNotifier { beacons, region ->
-            Log.d("TAG", "didRangeBeaconsInRegion called with beacon count:  " + beacons.size)
-            if (beacons.size > 0) {
-                beacons.iterator().next().apply {
-                    Log.i("TAG", "The first beacon I see is about ${this.distance} meters away.")
-                    Log.i("TAG", "bluetoothName ${this.bluetoothName}")
-                    Log.i("TAG", "beaconTypeCode ${this.beaconTypeCode}")
-                    Log.i("TAG", "bluetoothAddress ${this.bluetoothAddress}")
-                    Log.i("TAG", "serviceUuid ${this.serviceUuid}")
-                    Log.i("TAG", "rssi ${this.rssi}") // RSSI 來進行距離判斷
+            Log.d("TAG", "didRangeBeaconsInRegion called with beacon count:  ${beacons.size}")
 
-                    // iBeacon 主要參數為以下四個組成
-                    Log.i("TAG", "txPower ${this.id1}")     // UUID
-                    Log.i("TAG", "txPower ${this.id2}")     // Major
-                    Log.i("TAG", "txPower ${this.id3}")     // Minor
-                    Log.i("TAG", "txPower ${this.txPower}") // txPower
+            if (beacons.size > 0 && !hasSignedAndNotified) {
+                GlobalScope.launch {
+                    if (db.uscmDao().getStudent() !== null) {
+                        Firebase.instance.signClass(
+                            db.uscmDao().getStudent().id,
+                            hourFormatter.format(Date()),
+                            formatter.format(Date()),
+                            this@MainActivity.applicationContext,
+                            navController
+                        )
+                        hasSignedAndNotified = true
+                    }
                 }
 
 //                sendNotification()
