@@ -26,7 +26,6 @@ class MainActivity : BaseActivity() {
     private val db: UscmDatabase by lazy { UscmDatabase.getInstance(this) }
     private lateinit var uscmDao: UscmDao
     private var hasSignal = true
-
     private val formatter: SimpleDateFormat by lazy {
         SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.TAIWAN)
     }
