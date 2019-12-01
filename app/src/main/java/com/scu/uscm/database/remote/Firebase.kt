@@ -16,7 +16,7 @@ class Firebase private constructor() {
         val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { Firebase() }
     }
 
-    private val TAG = "Firebae"
+    private val TAG = "Firebase"
 
     private var db: FirebaseFirestore = FirebaseFirestore.getInstance()
     var liveSignHistory = MutableLiveData<MutableList<Schedule>>()
