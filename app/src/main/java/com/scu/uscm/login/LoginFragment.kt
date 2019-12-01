@@ -11,6 +11,7 @@ import com.scu.uscm.R
 import com.scu.uscm.database.local.UscmDao
 import com.scu.uscm.database.local.UscmDatabase
 import com.scu.uscm.database.model.Student
+import com.scu.uscm.database.remote.Firebase
 import kotlinx.android.synthetic.main.frag_login.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -78,6 +79,8 @@ class LoginFragment : Fragment() {
         GlobalScope.launch {
             db?.uscmDao()?.insertStudent(student)
         }
+
+        Firebase.instance.setStudent(student)
 
         findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToMessageDialog())
     }

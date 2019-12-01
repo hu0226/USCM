@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+
 class MainActivity : BaseActivity() {
 
     private var db: UscmDatabase? = null
@@ -63,6 +64,9 @@ class MainActivity : BaseActivity() {
         setupNavController()
     }
 
+    private fun getCurrentFrag(): Fragment? =
+        supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.childFragmentManager?.primaryNavigationFragment
+
     private fun checkLogin() {
         db = UscmDatabase.getInstance(this)
         uscmDao = db?.uscmDao()
@@ -76,10 +80,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setUpView() {
-        // toolbar
         setSupportActionBar(toolbar)
-
-        // bottom navigation
         bottom_navigation_view.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 
@@ -100,8 +101,4 @@ class MainActivity : BaseActivity() {
             }
         }
     }
-
-    private fun getCurrentFrag(): Fragment? =
-        supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.childFragmentManager?.primaryNavigationFragment
-
 }
