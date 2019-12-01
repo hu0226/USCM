@@ -45,6 +45,7 @@ dependencies {
     implementation 'com.android.support:multidex:2.0.0'
 
     // Firebase
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
     implementation 'com.google.firebase:firebase-firestore:21.3.0'
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -74,4 +75,7 @@ dependencies {
 
     // material dialog
     implementation "com.afollestad.material-dialogs:core:${version_materialDialog}"
+
+    // beacon
+    implementation "org.altbeacon:android-beacon-library:${version_altbeacon}"
 }

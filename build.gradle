@@ -8,6 +8,7 @@ buildscript {
         version_room               = "2.2.2"
         version_moshi              = "1.8.0"
         version_materialDialog     = "0.9.5.0"
+        version_altbeacon          = "2.16.3"
     }
     repositories {
         google()

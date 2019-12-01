@@ -20,12 +20,12 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 class MainActivity : BaseActivity() {
 
     private val db: UscmDatabase by lazy { UscmDatabase.getInstance(this) }
     private lateinit var uscmDao: UscmDao
     private var hasSignal = true
-
     private val formatter: SimpleDateFormat by lazy {
         SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.TAIWAN)
     }
@@ -77,6 +77,9 @@ class MainActivity : BaseActivity() {
         setupNavController()
     }
 
+    private fun getCurrentFrag(): Fragment? =
+        supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.childFragmentManager?.primaryNavigationFragment
+
     private fun checkLogin() {
         GlobalScope.launch {
             Log.d("TAG", "data " + db.uscmDao().getStudent())
@@ -87,10 +90,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setUpView() {
-        // toolbar
         setSupportActionBar(toolbar)
-
-        // bottom navigation
         bottom_navigation_view.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 
@@ -126,8 +126,4 @@ class MainActivity : BaseActivity() {
             }
         }
     }
-
-    private fun getCurrentFrag(): Fragment? =
-        supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.childFragmentManager?.primaryNavigationFragment
-
 }

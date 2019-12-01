@@ -11,6 +11,7 @@ import com.scu.uscm.database.model.Schedule
 import com.scu.uscm.database.model.Student
 
 class Firebase private constructor() {
+
     companion object {
         val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { Firebase() }
     }
@@ -77,5 +78,4 @@ class Firebase private constructor() {
                 Log.w(TAG, "Error getting documents: ", exception)
             }
     }
-
 }
