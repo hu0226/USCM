@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class Schedule(
     var classId: String? = "",
     var className: String? = "",
-    var classTime: String? = "",
-    var signTime: Long? = -1L,
+    var classTime: String = "",
+    var signTime: String = "",
     var isSign: Boolean? = false
 ): Parcelable

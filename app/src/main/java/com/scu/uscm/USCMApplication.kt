@@ -8,7 +8,7 @@ import kotlin.properties.Delegates
 class USCMApplication : Application() {
 
     companion object {
-        var appContext: USCMApplication by Delegates.notNull()
+        var appContext: Context by Delegates.notNull()
     }
 
     override fun onCreate() {
