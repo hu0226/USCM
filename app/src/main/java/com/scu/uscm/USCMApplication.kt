@@ -18,6 +18,7 @@ class USCMApplication : Application(), BootstrapNotifier {
 
     companion object {
         var appContext: Context by Delegates.notNull()
+//        var appContext: Context? = null
         const val BEACON_BACKGROUND_ID = "backgroundRegion"
     }
 
