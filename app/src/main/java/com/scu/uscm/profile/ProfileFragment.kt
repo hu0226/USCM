@@ -10,7 +10,10 @@ import com.scu.uscm.database.local.UscmDao
 import com.scu.uscm.database.local.UscmDatabase
 import com.scu.uscm.database.model.Student
 import kotlinx.android.synthetic.main.frag_profile.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ProfileFragment : Fragment() {
 

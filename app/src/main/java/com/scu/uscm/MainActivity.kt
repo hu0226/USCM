@@ -47,9 +47,8 @@ class MainActivity : BaseActivity(), BeaconConsumer {
     }
 
     private val db: UscmDatabase by lazy { UscmDatabase.getInstance(this) }
-    private lateinit var uscmDao: UscmDao
-    private var hasSignedAndNotified = false
 
+    private var hasSignedAndNotified = false
     private var beaconManager: BeaconManager? = null
 
     private val formatter: SimpleDateFormat by lazy {
@@ -98,8 +97,6 @@ class MainActivity : BaseActivity(), BeaconConsumer {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        uscmDao = db.uscmDao()
 
         checkLogin()
         setUpView()
@@ -209,11 +206,10 @@ class MainActivity : BaseActivity(), BeaconConsumer {
                             this@MainActivity.applicationContext,
                             navController
                         )
+                        sendNotification()
                         hasSignedAndNotified = true
                     }
                 }
-
-//                sendNotification()
             }
         }
 
@@ -250,8 +246,8 @@ class MainActivity : BaseActivity(), BeaconConsumer {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT)
             channel.description = "description"
-            val notificationManager: NotificationManager = this.getSystemService(NotificationManager::class.java)
-            notificationManager.createNotificationChannel(channel)
+            val notificationManager: NotificationManager? = this.getSystemService(NotificationManager::class.java)
+            notificationManager?.createNotificationChannel(channel)
         }
 
         val builder: NotificationCompat.Builder =
