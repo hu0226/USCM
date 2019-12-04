@@ -10,7 +10,10 @@ import com.scu.uscm.database.local.UscmDao
 import com.scu.uscm.database.local.UscmDatabase
 import com.scu.uscm.database.model.Student
 import kotlinx.android.synthetic.main.frag_profile.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ProfileFragment : Fragment() {
 
@@ -42,10 +45,9 @@ class ProfileFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 tv_name.text = student?.name
                 tv_st_id.text = student?.id
-                tv_class.text = "${student?.department}  ${student?.grade}年${student?._class}班"
+                tv_class.text = resources.getString(R.string.profile_class, student?.department, student?.grade.toString(), student?._class)
                 tv_mail.text = student?.email
             }
         }
     }
-
 }
