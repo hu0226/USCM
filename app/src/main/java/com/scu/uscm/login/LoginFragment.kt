@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
@@ -29,7 +30,11 @@ class LoginFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? =
         inflater.inflate(R.layout.frag_login, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,7 +67,15 @@ class LoginFragment : Fragment() {
                     .show()
             }
         } else {
-//            if ()  判斷格式
+            val pattern = Regex("[a-zA-Z0-9]")
+            if (!pattern.containsMatchIn(edt_student_id.text.toString())) {
+                Toast.makeText(context, "請輸入正確學號", Toast.LENGTH_SHORT).show()
+                return
+            }
+            if (edt_grade.text.toString().toInt() !in 1..4) {
+                Toast.makeText(context, "請輸入正確年級", Toast.LENGTH_SHORT).show()
+                return
+            }
             saveData()
         }
     }
