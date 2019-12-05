@@ -46,6 +46,7 @@ class HistoryFragment : Fragment() {
         }
 
         Firebase.instance.liveSignHistory.observe(this@HistoryFragment, Observer{
+            progressBar.visibility = View.GONE
             historyRecordList = it
             historyRecordAdapter.updateData(historyRecordList)
         })

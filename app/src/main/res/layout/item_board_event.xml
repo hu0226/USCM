@@ -11,8 +11,8 @@
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/ic_fiber_manual_record_black_24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/event_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/event_name" />
 
@@ -23,10 +23,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/event_time"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="用Python打造第1個聊天機器人" />
@@ -35,11 +33,12 @@
         android:id="@+id/event_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
         android:textSize="16sp"
-        tools:text="2017-12-12"
-        app:layout_constraintBottom_toBottomOf="@+id/event_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/event_name" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/event_name"
+        app:layout_constraintTop_toBottomOf="@+id/event_name"
+        tools:text="2017-12-12" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
